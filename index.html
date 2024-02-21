@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="main.css" />
+  <title>My Store</title>
+</head>
+
+<body>
+
+
+  <div id="app">
+    <header>
+      <h1>My Store</h1>
+      <nav>
+        <ul>
+          <li><a href="#" id="electronics">Electronics</a></li>
+          <li><a href="#" id="clothing">Clothing</a></li>
+          <li><a href="#" id="groceries">Groceries</a></li>
+          <li><a href="#" id="bestSeller">Best Seller</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main id="main-container">
+      <script type="module">
+        import { products } from './src/data.ts';
+        import { renderProducts, getByCategory, getByRating } from './src/data-controller.ts';
+        renderProducts(products);
+
+        // Bind click events using .addEventListener to the navigation links. Upon clicking:
+
+        // - "Electronics" should display all products categorized as "Electronics."
+        // - "Clothing" should display all products categorized as "Clothing."
+        // - "Groceries" should display all products categorized as "Groceries."
+        // - "Best Seller" should display all products with a rating greater than 4.5.
+
+        
+        // your code
+      </script>
+    </main>
+    <footer>
+      <p>© 2024 My Online Store. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+
+</html>
