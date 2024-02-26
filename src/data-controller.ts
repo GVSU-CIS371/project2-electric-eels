@@ -16,12 +16,13 @@ function renderProducts(prods: Product[]): void {
     let mainContainer = document.getElementById("main-container");
     if (mainContainer !== null) 
         mainContainer.innerHTML = "";
-    for(let i = 0; i < prods.length; i++){
-        let productHTML = generateProductHTML(prods[i]);
+
+    prods.map((prod) => {
+        let productHTML = generateProductHTML(prod);
         if(mainContainer !== null){
             mainContainer.innerHTML += productHTML;
         }
-    }
+    });
 }
 
 //Fetch all products of a given category and render the selected products into HTML
@@ -32,13 +33,13 @@ function getByCategory(category: string): void {
         mainContainer.innerHTML = "";
     }
 
-    for(let i = 0; i < filterProducts.length; i++){
-        let productHTML = generateProductHTML(filterProducts[i]);
+    filterProducts.map((prod) => {
+        let productHTML = generateProductHTML(prod);
 
         if(mainContainer !== null){
             mainContainer.innerHTML += productHTML;
         }
-    }
+    });
     makeReturn(products);
 }
 
@@ -50,13 +51,13 @@ function getByRating(minRating: number): void {
         mainContainer.innerHTML = "";
     }
 
-    for(let i = 0; i < filterProducts.length; i++){
-        let productHTML = generateProductHTML(filterProducts[i]);
+    filterProducts.map((prod) => {
+        let productHTML = generateProductHTML(prod);
 
         if(mainContainer !== null){
             mainContainer.innerHTML += productHTML;
         }
-    }
+    });
     makeReturn(products);
 }
 
