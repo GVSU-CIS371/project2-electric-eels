@@ -13,9 +13,11 @@ function generateProductHTML(product: Product): string {
 
 //Ensure that the products are rendered in <main id ="main-container"> within index.html
 function renderProducts(prods: Product[]): void {
+    let mainContainer = document.getElementById("main-container");
+    if (mainContainer !== null) 
+        mainContainer.innerHTML = "";
     for(let i = 0; i < prods.length; i++){
         let productHTML = generateProductHTML(prods[i]);
-        let mainContainer = document.getElementById("main-container");
         if(mainContainer !== null){
             mainContainer.innerHTML += productHTML;
         }
@@ -26,9 +28,9 @@ function renderProducts(prods: Product[]): void {
 function getByCategory(category: string): void {
     let filterProducts = products.filter((prod) => prod.category === category);
     let mainContainer = document.getElementById("main-container");
-    //if(mainContainer !== null){
+    if(mainContainer !== null){
         mainContainer.innerHTML = "";
-    //}
+    }
 
     for(let i = 0; i < filterProducts.length; i++){
         let productHTML = generateProductHTML(filterProducts[i]);
@@ -37,15 +39,16 @@ function getByCategory(category: string): void {
             mainContainer.innerHTML += productHTML;
         }
     }
+    makeReturn(products);
 }
 
 //Fetch all products with a rating greater than minRating and render the selected products into HTML
 function getByRating(minRating: number): void {
     let filterProducts = products.filter((prod) => prod.rating > minRating);
     let mainContainer = document.getElementById("main-container");
-    //if(mainContainer !== null){
+    if(mainContainer !== null){
         mainContainer.innerHTML = "";
-    //}
+    }
 
     for(let i = 0; i < filterProducts.length; i++){
         let productHTML = generateProductHTML(filterProducts[i]);
@@ -53,6 +56,20 @@ function getByRating(minRating: number): void {
         if(mainContainer !== null){
             mainContainer.innerHTML += productHTML;
         }
+    }
+    makeReturn(products);
+}
+
+function makeReturn(products: Product[]): void {
+    if(document.getElementById("return") === null){
+        let linkUL = document.querySelector("body>div>header>nav>ul"); //grabs nav list
+        let returnLink = document.createElement("li"); //creates new list item
+        returnLink.innerHTML = `<a href="#" id="return">Return</a>`; //adds link to list item
+        linkUL?.appendChild(returnLink); //appends list item to nav list
+        returnLink.addEventListener("click", () => {
+            renderProducts(products);
+            linkUL?.removeChild(returnLink);
+        });
     }
 }
 
